@@ -11,7 +11,6 @@ const renderTopLanguages = require("../src/renderTopLanguages");
 
 module.exports = async (req, res) => {
   const {
-    username,
     hide,
     hide_title,
     card_width,
@@ -26,7 +25,7 @@ module.exports = async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    topLangs = await fetchTopLanguages(username);
+    topLangs = await fetchTopLanguages('JoaoVSouto');
   } catch (err) {
     return res.send(renderError(err.message));
   }

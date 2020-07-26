@@ -11,7 +11,6 @@ const renderStatsCard = require("../src/renderStatsCard");
 
 module.exports = async (req, res) => {
   const {
-    username,
     hide,
     hide_title,
     hide_border,
@@ -31,7 +30,7 @@ module.exports = async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    stats = await fetchStats(username, parseBoolean(count_private));
+    stats = await fetchStats('JoaoVSouto', parseBoolean(count_private));
   } catch (err) {
     return res.send(
       renderError(
