@@ -11,6 +11,7 @@ const renderTopLanguages = require("../src/renderTopLanguages");
 
 module.exports = async (req, res) => {
   const {
+    is_joma,
     hide,
     hide_title,
     card_width,
@@ -24,8 +25,10 @@ module.exports = async (req, res) => {
 
   res.setHeader("Content-Type", "image/svg+xml");
 
+  const isJoma = is_joma ? 'marcospb19' : null;
+
   try {
-    topLangs = await fetchTopLanguages('JoaoVSouto');
+    topLangs = await fetchTopLanguages(isJoma || 'JoaoVSouto');
   } catch (err) {
     return res.send(renderError(err.message));
   }

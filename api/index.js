@@ -11,6 +11,7 @@ const renderStatsCard = require("../src/renderStatsCard");
 
 module.exports = async (req, res) => {
   const {
+    is_joma,
     hide,
     hide_title,
     hide_border,
@@ -29,8 +30,10 @@ module.exports = async (req, res) => {
 
   res.setHeader("Content-Type", "image/svg+xml");
 
+  const isJoma = is_joma ? 'marcospb19' : null;
+
   try {
-    stats = await fetchStats('JoaoVSouto', parseBoolean(count_private));
+    stats = await fetchStats(isJoma || 'JoaoVSouto', parseBoolean(count_private));
   } catch (err) {
     return res.send(
       renderError(

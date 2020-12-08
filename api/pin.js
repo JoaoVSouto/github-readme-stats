@@ -11,7 +11,7 @@ const renderRepoCard = require("../src/renderRepoCard");
 
 module.exports = async (req, res) => {
   const {
-    username,
+    is_joma,
     repo,
     title_color,
     icon_color,
@@ -26,8 +26,10 @@ module.exports = async (req, res) => {
 
   res.setHeader("Content-Type", "image/svg+xml");
 
+  const isJoma = is_joma ? 'marcospb19' : null;
+
   try {
-    repoData = await fetchRepo(username, repo);
+    repoData = await fetchRepo(isJoma || 'JoaoVSouto', repo);
   } catch (err) {
     logger.error(err);
     return res.send(renderError(err.message));
